@@ -22,11 +22,7 @@ const HeaderCls = styled.div`
     width: 1.2rem;
     border: 2px solid;
     border-radius: 10%;
-    border-image: linear-gradient(
-      180deg,
-      rgb(184, 236, 255),
-      rgb(173, 255, 248)
-    ) 1;
+    border-image: linear-gradient(90deg, rgb(194, 245, 255), rgb(255, 189, 204)) 1;
   }
   .title {
     font-weight: bold;

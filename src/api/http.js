@@ -63,7 +63,6 @@ const http = function http(config) {
     signal,
   };
   if (/^(POST|PUT|PATCH)$/i.test(method) && body) config.body = body;
-  console.log(url, config);
   return fetch(url, config)
     .then((response) => {
       let { status, statusText } = response;
@@ -105,7 +104,6 @@ const http = function http(config) {
     if (typeof config != "object") config = {};
     config["url"] = url;
     config["method"] = item;
-    console.log(config, "config");
     return http(config);
   };
 });

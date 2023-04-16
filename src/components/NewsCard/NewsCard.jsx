@@ -12,8 +12,17 @@ const NewsCardCls = styled.div`
   align-items: center;
   box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.5);
   .news-info {
+    height: 1.5rem;
     flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     h4 {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      overflow: hidden;
       font-size: 0.35rem;
       margin-bottom: 0.2rem;
     }
