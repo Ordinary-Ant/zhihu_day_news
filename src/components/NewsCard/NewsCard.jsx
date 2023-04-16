@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Image } from "antd-mobile";
+import { useNavigate } from "react-router";
 
 const NewsCardCls = styled.div`
   margin: 0.25rem;
@@ -10,7 +11,7 @@ const NewsCardCls = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0.3rem rgba(255, 255, 255, 0.5);
   .news-info {
     height: 1.5rem;
     flex: 3;
@@ -29,8 +30,14 @@ const NewsCardCls = styled.div`
   }
 `;
 export default function NewsCard(props) {
+  const navigate = useNavigate()
+  const navToDetail = (id) => {
+    if (!id) return
+    navigate({ pathname: `/detail/${id}` })
+  }
+
   return (
-    <NewsCardCls>
+    <NewsCardCls onClick={() => navToDetail(props.news.id)}>
       <div className="news-info">
         <h4>{props.news.title}</h4>
         <span>{props.news.hint}</span>

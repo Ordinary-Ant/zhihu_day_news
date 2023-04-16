@@ -31,8 +31,7 @@ const HomeCls = styled.div`
 
 export default function Home() {
   const [banner_list, setBannerList] = useState([]);
-  const [news_List, setNewsList] = useState([]);
-  const [has_more, setHasMore] = useState(true);
+  const [news_List, setNewsList] = useState([])
 
   useEffect(() => {
     let limit_count = 0;
@@ -40,8 +39,8 @@ export default function Home() {
       try {
         const { date, stories, top_stories } = await api.queryNewsLatest();
         setBannerList(top_stories);
-        news_List.push({ date, stories });
-        setNewsList([...news_List]);
+        setNewsList([{ date, stories }]);
+        limit_count = 0
       } catch (e) {
         if (limit_count < 5) {
           limit_count++;
@@ -54,12 +53,9 @@ export default function Home() {
     getNewsList();
   }, []);
 
-  useMemo(() => {
-    console.log(has_more, "has_more");
-    if (news_List.length > 30) {
-      setHasMore(false);
-    }
-  });
+  const has_more = useMemo(() => {
+    return news_List.length > 30 ? false : true
+  }, [news_List.length]);
 
   const loadMore = async () => {
     try {
@@ -68,7 +64,7 @@ export default function Home() {
       news_List.push(res);
       setNewsList([...news_List]);
     } catch (error) {
-      toast(error);
+      toast('error', error);
     }
   };
 
